@@ -160,6 +160,7 @@ export class AlertTabCtrl {
     alert.frequency = alert.frequency || '60s';
     alert.handler = alert.handler || 1;
     alert.notifications = alert.notifications || [];
+    alert.workdaysOnly = alert.workdaysOnly || false;
 
     var defaultName = this.panel.title + ' alert';
     alert.name = alert.name || defaultName;

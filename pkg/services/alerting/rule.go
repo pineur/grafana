@@ -18,6 +18,7 @@ type Rule struct {
 	Frequency           int64
 	Name                string
 	Message             string
+	WorkdaysOnly        bool
 	NoDataState         m.NoDataOption
 	ExecutionErrorState m.ExecutionErrorOption
 	State               m.AlertStateType
@@ -98,6 +99,7 @@ func NewRuleFromDBAlert(ruleDef *m.Alert) (*Rule, error) {
 	model.Message = ruleDef.Message
 	model.Frequency = ruleDef.Frequency
 	model.State = ruleDef.State
+	model.WorkdaysOnly = ruleDef.WorkdaysOnly
 	model.NoDataState = m.NoDataOption(ruleDef.Settings.Get("noDataState").MustString("no_data"))
 	model.ExecutionErrorState = m.ExecutionErrorOption(ruleDef.Settings.Get("executionErrorState").MustString("alerting"))
 

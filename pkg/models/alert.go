@@ -71,6 +71,7 @@ type Alert struct {
 	Silenced       bool
 	ExecutionError string
 	Frequency      int64
+	WorkdaysOnly   bool
 
 	EvalData     *simplejson.Json
 	NewStateDate time.Time
