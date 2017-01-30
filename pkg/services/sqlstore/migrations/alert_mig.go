@@ -45,6 +45,10 @@ func addAlertMigrations(mg *Migrator) {
 	mg.AddMigration("add index alert state", NewAddIndexMigration(alertV1, alertV1.Indices[1]))
 	mg.AddMigration("add index alert dashboard_id", NewAddIndexMigration(alertV1, alertV1.Indices[2]))
 
+	mg.AddMigration("Add column workdays_only", NewAddColumnMigration(alertV1, &Column{
+		Name: "workdays_only", Type: DB_Bool, Nullable: false, Default: "0",
+	}))
+
 	alert_notification := Table{
 		Name: "alert_notification",
 		Columns: []*Column{
@@ -66,8 +70,5 @@ func addAlertMigrations(mg *Migrator) {
 		Name: "is_default", Type: DB_Bool, Nullable: false, Default: "0",
 	}))
 	mg.AddMigration("add index alert_notification org_id & name", NewAddIndexMigration(alert_notification, alert_notification.Indices[0]))
-	mg.AddMigration("Add column workdays_only", NewAddColumnMigration(alert_notification, &Column{
-		Name: "workdays_only", Type: DB_Bool, Nullable: false, Default: false,
-	}))
 
 }
