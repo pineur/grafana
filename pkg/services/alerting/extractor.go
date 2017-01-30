@@ -109,6 +109,7 @@ func (e *DashAlertExtractor) GetAlerts() ([]*m.Alert, error) {
 				Handler:     jsonAlert.Get("handler").MustInt64(),
 				Message:     jsonAlert.Get("message").MustString(),
 				Frequency:   frequency,
+				WorkdaysOnly:jsonAlert.Get("workdaysOnly").MustBool(),
 			}
 
 			for _, condition := range jsonAlert.Get("conditions").MustArray() {
